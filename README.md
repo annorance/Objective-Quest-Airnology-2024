@@ -18,15 +18,17 @@ Jenis-jenis Traffic yang Harus Diprediksi:
 
 ## Evaluation Metric
 Pada kompetisi ini, performa model akan dievaluasi menggunakan nilai rata-rata metrik dari Balanced Accuracy Score dan Accuracy Score.
-
+```
 from sklearn.metrics import accuracy_score, balanced_accuracy_score
 
 bal_acc = balanced_accuracy_score(solution, submission)
 acc = accuracy_score(solution, submission)
 score = (bal_acc+acc)/2
+```
 Nilai akhir 100% berdasarkan leaderboard dengan ketentuan kesesuaian antara akurasi yang didapatkan panitia saat validasi notebook dengan akurasi yang didapatkan peserta di Kaggle, yang akan ditentukan berdasarkan rata-rata terbobot antara nilai public dan private sebagai berikut:
-
+```
 nilai akhir = 30% public + 70% private
+```
 
 ## Dataset
 ### Daftar File
