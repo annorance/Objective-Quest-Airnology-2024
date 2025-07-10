@@ -1,0 +1,28 @@
+name: Auto Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Setiap hari pukul 00:00 UTC
+  workflow_dispatch:      # Bisa juga dipicu manual
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'you@example.com'
+
+      - name: Add upstream and fetch
+        run: |
+          git remote add upstream https://github.com/anssshh/Objective-Quest-Airnology-2024.git
+          git fetch upstream
+          git checkout main
+          git merge upstream/main
+          git push origin main
