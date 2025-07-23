@@ -86,6 +86,11 @@ traffic :
 - Bruteforce
 - XMRIGCC CryptoMinerBruteforce-XML
 
+## Hasil dan Pembahasann
+Untuk mengatasi permasalahan ketidakseimbangan kelas pada data, digunakan teknik BorderlineSMOTE, yaitu metode oversampling yang memfokuskan penambahan data sintetis pada area sekitar batas keputusan antar kelas. Model yang digunakan adalah Multilayer Perceptron Classifier (MLPClassifier) dengan arsitektur tiga lapis tersembunyi berjumlah 150, 100, dan 50 neuron. Model dikonfigurasi dengan fungsi aktivasi ReLU, optimisasi menggunakan Adam, nilai alpha sebesar 0.01 sebagai regularisasi ridge penalty, batch size sebesar 400, learning rate awal 0.001, dan maksimum iterasi sebanyak 5000. Toleransi konvergensi diatur pada 1e-6 untuk mencapai optimasi yang lebih stabil. 
+
+Hasil evaluasi menunjukkan performa yang cukup baik, dengan public score sebesar 0.73250 dan private score sebesar 0.73547. Selisih skor yang relatif kecil antara data public dan private mengindikasikan bahwa model memiliki kemampuan generalisasi yang baik terhadap data baru. Selain itu, penerapan BorderlineSMOTE terbukti efektif dalam meningkatkan performa model pada dataset yang imbalanced.
+
 ## Citation 
 Arkan Attaqy, Elzandi Irfan Zikra, GATOT, Lemuel Horas, miaw🐟, and Zys. Objective Quest Dataquest 2024. https://kaggle.com/competitions/objective-quest-dataquest, 2024. Kaggle.
 
