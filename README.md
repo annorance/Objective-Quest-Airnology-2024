@@ -1,23 +1,22 @@
 # Objective-Quest-Airnology-2024
 ## Description
-Di era digital saat ini, keamanan siber menjadi salah satu prioritas utama bagi perusahaan yang mengelola situs web dengan lalu lintas tinggi. Semakin meningkatnya jumlah pengguna dan perangkat yang terhubung ke internet, serta kompleksitas serangan siber yang terus berkembang, kebutuhan untuk memantau dan melindungi jaringan menjadi semakin krusial. Setiap hari, perusahaan-perusahaan besar harus menghadapi berbagai macam jenis traffic yang masuk dan keluar dari server mereka, mulai dari aktivitas pengguna yang sah hingga potensi ancaman seperti serangan dan aktivitas berbahaya lainnya.
+In today’s digital era, cybersecurity has become one of the top priorities for companies managing high-traffic websites. As the number of users and connected devices increases, along with the growing complexity of cyberattacks, the need to monitor and protect networks becomes even more crucial. Every day, large companies must handle various types of traffic flowing in and out of their servers—from legitimate user activity to potential threats such as attacks and other malicious behavior.
 
-Untuk menjaga integritas dan keamanan jaringan, tim keamanan siber harus secara efektif mengidentifikasi dan mengklasifikasikan jenis-jenis traffic yang ada dalam jaringan. Namun, dengan volume data yang sangat besar dan variasi yang tinggi dalam pola traffic, diperlukan sistem untuk mendeteksi dan menganalisis aktivitas mencurigakan secara real-time. Pembentukan model yang efektif akan membuat perusahaan dapat secara proaktif mendeteksi dan merespons potensi ancaman.
+To maintain network integrity and security, cybersecurity teams must effectively identify and classify the types of traffic within the network. However, with massive data volumes and high variability in traffic patterns, a system capable of real-time detection and analysis of suspicious activity is required. Building an effective model will enable companies to proactively detect and respond to potential threats.
 
 ## Task
-Peserta diharapkan untuk membangun dan mengembangkan model prediktif yang dapat mengklasifikasikan jenis traffic dalam jaringan. Model ini harus mampu menganalisis data traffic yang besar dan bervariasi, mengidentifikasi pola-pola yang mencurigakan, dan memprediksi kategori traffic secara akurat.
+Participants are expected to build and develop a predictive model that can classify network traffic types. This model must be able to analyze large and diverse traffic data, identify suspicious patterns, and accurately predict the traffic category.
 
 Jenis-jenis Traffic yang Harus Diprediksi:
-
-- Background - Lalu lintas rutin atau latar belakang yang biasanya tidak menimbulkan ancaman.
-- Benign - Traffic yang tidak menunjukkan tanda-tanda aktivitas berbahaya atau anomali.
-- Probing - Aktivitas pemindaian atau penjelajahan untuk menemukan kerentanan atau target.
-- Bruteforce - Upaya penyerangan dengan mencoba berbagai kombinasi kata sandi untuk mendapatkan akses.
-- XMRIGCC CryptoMiner - Aktivitas terkait dengan penambangan cryptocurrency secara tersembunyi.
-- Bruteforce-XML - Serangan brute force yang menargetkan aplikasi berbasis XML.
+- Background – Routine or background traffic that typically does not pose a threat.
+- Benign – Traffic that shows no signs of harmful or anomalous activity.
+- Probing – Scanning or probing activity to identify vulnerabilities or targets.
+- Bruteforce – Attack attempts using various password combinations to gain access.
+- XMRIGCC CryptoMiner – Activities related to covert cryptocurrency mining.
+- Bruteforce-XML – Brute force attacks targeting XML-based applications.
 
 ## Evaluation Metric
-Pada kompetisi ini, performa model akan dievaluasi menggunakan nilai rata-rata metrik dari Balanced Accuracy Score dan Accuracy Score.
+In this competition, model performance will be evaluated using the average of the Balanced Accuracy Score and Accuracy Score.
 ```
 from sklearn.metrics import accuracy_score, balanced_accuracy_score
 
@@ -25,71 +24,71 @@ bal_acc = balanced_accuracy_score(solution, submission)
 acc = accuracy_score(solution, submission)
 score = (bal_acc+acc)/2
 ```
-Nilai akhir 100% berdasarkan leaderboard dengan ketentuan kesesuaian antara akurasi yang didapatkan panitia saat validasi notebook dengan akurasi yang didapatkan peserta di Kaggle, yang akan ditentukan berdasarkan rata-rata terbobot antara nilai public dan private sebagai berikut:
+The final score (100%) is based on the leaderboard, which reflects the accuracy consistency between the organizer’s notebook validation and the participant’s Kaggle submission. The final score will be calculated using a weighted average:
 ```
 nilai akhir = 30% public + 70% private
 ```
 
 ## Dataset
-### Daftar File
-train.csv - data log aktivitas dan traffic untuk training model.
-test.csv - data log aktivitas dan traffic untuk dilakukan prediksi.
-sample_submission.csv - contoh submisi.
+### Files
+- `train.csv` - log of network activity and traffic used for training the model.
+- `test.csv` - log of network activity and traffic to be predicted.
+- `sample_submission.csv` - sample submission format.
 ### Features
-- id - ID untuk setiap aliran jaringan
-- origin_host - Alamat IP client
-- origin_port - Nomor port yang digunakan oleh client
-- response_host - Alamat IP server
-- response_port - Nomor port yang digunakan oleh server
-- flow_duration - Durasi aliran jaringan
-- forward_packets_per_sec - Laju pengiriman paket dari client ke server per detik
-- backward_packets_per_sec - Laju pengiriman paket dari server kembali ke client per detik
-- flow_packets_per_sec - Laju keseluruhan paket yang dikirim per detik dalam seluruh aliran
-- down_up_ratio - Rasio antara jumlah paket atau byte yang diunduh dan diunggah
-- flow_FIN_flags - Jumlah bendera FIN yang menandakan akhir dari koneksi TCP.
-- flow_SYN_flags - Jumlah bendera SYN yang digunakan untuk memulai koneksi TCP.
-- flow_RST_flags - Jumlah bendera RST yang menandakan reset koneksi TCP.
-- forward_PSH_flags - Jumlah bendera PSH yang menandakan data harus segera diproses oleh server.
-- backward_PSH_flags - Jumlah bendera PSH yang menandakan data harus segera diproses oleh client.
-- flow_ACK_flags - Jumlah bendera ACK yang digunakan untuk mengonfirmasi penerimaan paket.
-- forward_URG_flags - Jumlah bendera URG yang menandakan data mendesak dari client.
-- backward_URG_flags - Jumlah bendera URG yang menandakan data mendesak dari server.
-- flow_CWR_flags - Jumlah bendera CWR yang menandakan pengurangan ukuran jendela kongesti.
-- flow_ECE_flags - Jumlah bendera ECE yang menunjukkan adanya kemacetan jaringan.
-- forward_pkts_payload - Ukuran rata-rata payload dalam paket dari client ke server
-- backward_pkts_payload - Ukuran rata-rata payload dalam paket dari server ke client
-- flow_pkts_payload - Ukuran rata-rata payload dalam seluruh aliran, mencakup paket dari client dan server
-- forward_iat - Rata-rata waktu antar kedatangan (Inter Arrival Time, IAT) antara paket dari client ke server
-- backward_iat - Rata-rata waktu antar kedatangan (IAT) antara paket dari server ke client
-- flow_iat - Rata-rata waktu antar kedatangan (IAT) dalam seluruh aliran, mencakup paket dari client dan server
-- payload_bytes_per_sec - Laju transfer byte payload per detik dalam aliran jaringan
-- forward_subflow_packets - Jumlah paket dalam subflow dari client ke server
-- backward_subflow_packets - Jumlah paket dalam subflow dari server ke client
-- forward_subflow_bytes - Jumlah byte dalam subflow dari client ke server
-- backward_subflow_bytes - Jumlah byte dalam subflow dari server ke client
-- forward_bulk_bytes - Jumlah byte bulk dalam aliran dari client ke server
-- backward_bulk_bytes - Jumlah byte bulk dalam aliran dari server ke client
-- forward_bulk_packets - Jumlah paket bulk dalam aliran dari client ke server
-- backward_bulk_packets - Jumlah paket bulk dalam aliran dari server ke client
-- forward_bulk_rate - Laju lalu lintas bulk dalam aliran dari client ke server
-- backward_bulk_rate - Laju lalu lintas bulk dalam aliran dari server ke client
-- active - Rata-rata waktu aktif dalam aliran, menggambarkan periode ketika data sedang ditransmisikan
-- idle - Rata-rata waktu idle dalam aliran, menggambarkan periode ketika tidak ada data yang ditransmisikan
-- forward_initial_window_size - Ukuran Window Flow Control yang tersedia dari client ke server pada awal koneksi, menentukan jumlah data yang dapat dikirim tanpa memerlukan konfirmasi.
-- backward_initial_window_size - Ukuran Window Flow Control yang tersedia dari server ke client pada awal koneksi, menentukan jumlah data yang dapat dikirim tanpa memerlukan konfirmasi.
-- forward_last_window_size - Ukuran Window Flow Control dari client ke server pada akhir koneksi, menentukan jumlah data terakhir yang dapat dikirim sebelum koneksi ditutup.
+- id - Unique ID for each network flow
+- origin_host - IP address of the client
+- origin_port - Port number used by the client
+- response_host - IP address of the server
+- response_port - Port number used by the server
+- flow_duration - Duration of the network flow
+- forward_packets_per_sec - Rate of packet transmission from client to server per second
+- backward_packets_per_sec - Rate of packet transmission from server to client per second
+- flow_packets_per_sec - Total packet rate in the entire flow
+- down_up_ratio - Ratio of downloaded to uploaded bytes or packets
+- flow_FIN_flags - Number of FIN flags indicating the end of a TCP connection
+- flow_SYN_flags - Number of SYN flags used to initiate a TCP connection
+- flow_RST_flags - Number of RST flags indicating a TCP connection reset
+- forward_PSH_flags - PSH flags indicating data that must be processed immediately by the server
+- backward_PSH_flags - PSH flags indicating data that must be processed immediately by the client
+- flow_ACK_flags - ACK flags used to confirm receipt of packets
+- forward_URG_flags - URG flags indicating urgent data from the client
+- backward_URG_flags - URG flags indicating urgent data from the server
+- flow_CWR_flags - CWR flags indicating reduced congestion window size
+- flow_ECE_flags - ECE flags indicating network congestion
+- forward_pkts_payload - Average payload size in packets from client to server
+- backward_pkts_payload - Average payload size in packets from server to client
+- flow_pkts_payload - Average payload size across the entire flow
+- forward_iat - Average Inter Arrival Time (IAT) between packets from client to server
+- backward_iat - Average IAT between packets from server to client
+- flow_iat - Average IAT in the entire flow
+- payload_bytes_per_sec - Payload transfer rate per second
+- forward_subflow_packets - Number of packets in the client-to-server subflow
+- backward_subflow_packets - Number of packets in the server-to-client subflow
+- forward_subflow_bytes - Number of bytes in the client-to-server subflow
+- backward_subflow_bytes - Number of bytes in the server-to-client subflow
+- forward_bulk_bytes - Number of bulk bytes from client to server
+- backward_bulk_bytes - Number of bulk bytes from server to client
+- forward_bulk_packets - Number of bulk packets from client to server
+- backward_bulk_packets - Number of bulk packets from server to client
+- forward_bulk_rate - Bulk traffic rate from client to server
+- backward_bulk_rate - Bulk traffic rate from server to client
+- active - Average active time during which data is transmitted
+- idle - Average idle time during which no data is transmitted
+- forward_initial_window_size - Initial flow control window size from client to server
+- backward_initial_window_size - Initial flow control window size from server to client
+- forward_last_window_size - Final window size from client to server
 ### Target
-traffic :
+Traffic:
 - Background
 - Benign
 - Probing
 - Bruteforce
 - XMRIGCC CryptoMinerBruteforce-XML
 
-## Hasil dan Pembahasann
-Untuk mengatasi permasalahan ketidakseimbangan kelas pada data, digunakan teknik BorderlineSMOTE, yaitu metode oversampling yang memfokuskan penambahan data sintetis pada area sekitar batas keputusan antar kelas. Model yang digunakan adalah Multilayer Perceptron Classifier (MLPClassifier) dengan arsitektur tiga lapis tersembunyi berjumlah 150, 100, dan 50 neuron. Model dikonfigurasi dengan fungsi aktivasi ReLU, optimisasi menggunakan Adam, nilai alpha sebesar 0.01 sebagai regularisasi ridge penalty, batch size sebesar 400, learning rate awal 0.001, dan maksimum iterasi sebanyak 5000. Toleransi konvergensi diatur pada 1e-6 untuk mencapai optimasi yang lebih stabil. 
+## Result and Discussion
+To address class imbalance in the dataset, the BorderlineSMOTE technique was applied—an oversampling method that focuses on generating synthetic data near decision boundaries between classes. The model used was Multilayer Perceptron Classifier (MLPClassifier) with a three-hidden-layer architecture containing 150, 100, and 50 neurons respectively. The model was configured with the ReLU activation function, optimized using Adam, and used a ridge penalty (alpha) of 0.01. The batch size was set to 400, initial learning rate to 0.001, maximum iterations to 5000, and convergence tolerance to 1e-6 for more stable optimization.
 
-Hasil evaluasi menunjukkan performa yang cukup baik, dengan public score sebesar 0.73250 dan private score sebesar 0.73547. Selisih skor yang relatif kecil antara data public dan private mengindikasikan bahwa model memiliki kemampuan generalisasi yang baik terhadap data baru. Selain itu, penerapan BorderlineSMOTE terbukti efektif dalam meningkatkan performa model pada dataset yang imbalanced.
+Evaluation results showed strong performance, with a public score of 0.73250 and a private score of 0.73547. The relatively small difference between public and private scores indicates good generalization ability of the model on unseen data. Additionally, the use of BorderlineSMOTE proved effective in improving model performance on the imbalanced dataset.
 
 ## Citation 
 Arkan Attaqy, Elzandi Irfan Zikra, GATOT, Lemuel Horas, miaw🐟, and Zys. Objective Quest Dataquest 2024. https://kaggle.com/competitions/objective-quest-dataquest, 2024. Kaggle.
